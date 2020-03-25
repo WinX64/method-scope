@@ -4,21 +4,25 @@ classdef Variable < Node
     %   to be scoped
 
     properties
-        Children = []
-        Value
+        Children = [] %Terminal nodes have no children
+        Value %The value itself
+        Name = '@'  %The name of the variable for representation
     end
     
     methods
-        function this = Variable(value)
+        function this = Variable(value, name)
             this.Value = value;
+            if nargin > 1
+                this.Name = name;
+            end
         end
         
         function value = calculate(this)
             value = this.Value;
         end
         
-        function value = stringify(~)
-            value = '@';
+        function value = stringify(this)
+            value = this.Name;
         end
     end
 end

@@ -33,7 +33,8 @@ classdef OperationPresenter
             fprintf('=== Outputs ===\n');
             for i = 1:numel(this.NamedOperationTrees)
                 namedOperationTree = this.NamedOperationTrees(i);
-                fprintf(' f%d(%s) = %s\n', i, variables, namedOperationTree.stringify());
+                fprintf(' f%d(%s) = %f = %s\n', i, variables,...
+                    namedOperationTree.calculate(), namedOperationTree.stringify());
             end
         end
     end
@@ -67,7 +68,7 @@ classdef OperationPresenter
             currentVariableName = 65; %ASCII code
             mapping = [];
             for variable = uniqueVariables
-                mapping = cat(1, mapping, [variable, NamedVariable(char(currentVariableName), variable.Value)]);
+                mapping = cat(1, mapping, Variable(variable.Value, char(currentVariableName)));
                 currentVariableName = currentVariableName + 1;
             end
 
@@ -79,7 +80,7 @@ classdef OperationPresenter
             end
 
             %Update properties
-            this.UniqueVariables = mapping(:,2)';
+            this.UniqueVariables = mapping';
             this.NamedOperationTrees = namedOperationTrees;
         end
     end
@@ -94,12 +95,12 @@ classdef OperationPresenter
                     end
                     
                     for j = 1:size(mapping, 1)
-                        if isequal(node, mapping(j, 1))
+                        if isequal(node.Value, mapping(j).Value)
                             break;
                         end
                     end
                     
-                    tree.Children(i) = mapping(j, 2);
+                    tree.Children(i) = mapping(j);
                 else
                     tree.Children(i) = OperationPresenter.insertNamedVariables(node, mapping);
                 end
