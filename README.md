@@ -13,7 +13,7 @@ This tool proves useful for cases were you desire to know the equations that gov
 ## Limitations
 
 Since operations need to be done with at least an instance of the scope, this tool cannot:
-* Log method calls that require explicitly numerical values, such as sin and cos.
+* Log method calls that require explicitly numerical values, such as `sin` and `cos`.
 * Log operations that are done without its own instance, such as an addition or subtraction between two numerical constants.
 
 ## How to use
