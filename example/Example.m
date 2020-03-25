@@ -27,18 +27,17 @@ state = MethodScope(state, bypasser);
 input = MethodScope(input, bypasser);
 
 %Both arguments can be passed normally to the function, and will return
-%instances of itself instead of numerical values
+%instances of themselves instead of numerical values
 result = PM_dX_Peltier(state, input);
 
-%Indexing bypassing is disabled in order to access the different values on
-%the result vector
+%Indexing bypassing is now disabled in order to access the different values
+%on the result vector
 bypasser.Indexing = true;
 
 %The operation trees are extracted from the MethodScope instances
 trees = arrayfun(@(x) x.OperationTree, result);
 
-%Finally, they're passed to a OperationPresenter for a better text
-%representation
+%Finally, they're passed to a OperationPresenter for better visualization
 presenter = OperationPresenter(trees);
 presenter.present();
 
