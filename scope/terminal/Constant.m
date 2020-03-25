@@ -1,10 +1,11 @@
 classdef Constant < Node
-    %CONSTANT Summary of this class goes here
-    %   Detailed explanation goes here
+    %CONSTANT A constant value
+    %   Representation of a constant numerical, logical, or other type of
+    %   value
     
     properties
-        Children = []
-        Value
+        Children = [] %Constants have no children
+        Value %The value itself
     end
     
     methods
@@ -16,6 +17,8 @@ classdef Constant < Node
             value = this.Value;
         end
         
+        %Representation for cell arrays or higher dimensional arrays is
+        %still not supported
         function value = stringify(this)
             if iscell(this.Value)
                 error('Cell display not supported!');

@@ -1,9 +1,10 @@
 classdef NamedVariable < Node
-    %NAMEDVARIABLE Summary of this class goes here
-    %   Detailed explanation goes here
+    %NAMEDVARIABLE A named variable
+    %   Similar to the Variable class, but can contain a custom
+    %   representation name
 
     properties
-        Children
+        Children = [] %
         Name
         Value
     end

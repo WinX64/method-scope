@@ -1,6 +1,7 @@
 classdef Variable < Node
-    %CONSTANT Summary of this class goes here
-    %   Detailed explanation goes here
+    %VARIABLE A variable value
+    %   This class represents the values passed as argument for the method
+    %   to be scoped
 
     properties
         Children = []
